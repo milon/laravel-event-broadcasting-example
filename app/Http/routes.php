@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Go to /fire for firing an event.';
+});
+
+Route::get('/fire', function(){
+	\Event::fire(new App\Events\TestEvent(1));
+	return 'Event fired. Go to /show to observe.';
+});
+
+Route::get('/show', function(){
+	return view('welcome');
 });

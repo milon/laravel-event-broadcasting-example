@@ -1,27 +1,69 @@
-## Laravel PHP Framework
+# Laravel 5.1 Event Broadcasting Example
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+In many modern web applications, web sockets are used to implement real-time, live-updating user interfaces. When some data is updated on the server, a message is typically sent over a websocket connection to be handled by the client.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+To assist you in building these types of applications, Laravel makes it easy to "broadcast" your events over a websocket connection. Broadcasting your Laravel events allows you to share the same event names between your server-side code and your client-side JavaScript framework.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+By default laravel supports three drivers, Pusher, Redis and a Log driver for debugging. In this example we use redis and nodejs client using socket.io to implement event broadcasting.
 
-## Official Documentation
+## Pre-requisite
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
++ Laravel 5.1
++ NodeJS installed
++ Redis installed
 
-## Contributing
+## Used Packages
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### PHP
 
-## Security Vulnerabilities
++ predis/predis: for redis client
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+### NodeJS
 
-### License
++ express: expressjs framework for routing
++ socket.io: socket.io library for web socket
++ ioredis: ioredis library as redis client
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## Installation
+
+At first clone the repository using following command-
+
+```
+git clone https://github.com/milon521/laravel-event-broadcasting-example.git
+```
+
+Then install php dependency 
+
+```
+composer install
+```
+
+Then install nodejs dependency with
+
+```
+npm install
+```
+
+Then run redis server using the following command-
+
+```
+redis-server --port 3001
+```
+
+Then start nodejs server using-
+
+```
+node server.js
+```
+
+At last start laravel server 
+
+```
+php artisan serve
+```
+
+Then visit http://localhost:8000 to view app in browser.
+
+## Contact
+
+For further details, ping at milon521@gmail.com
